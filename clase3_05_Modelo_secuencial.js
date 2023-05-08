@@ -12,6 +12,13 @@ let num;
 let prevNum;
 
 
+inputNumEpocas.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") { // Verificar si la tecla presionada es "Enter"
+        event.preventDefault(); // Prevenir que se envíe el formulario
+        btnEntrenar.click(); // Hacer click en el botón
+    }
+})
+
 // Evento de input para validar el número ingresado y habilitar el botón "Entrenar"
 
 inputNumEpocas.addEventListener( 'input', (event) => {
@@ -55,6 +62,8 @@ btnEntrenar.addEventListener('click', function() {
     // Llamar a la función de entrenamiento
     run(num);
 });
+
+
 
 btnPredecir.addEventListener('click', function () {
 
@@ -114,6 +123,13 @@ async function run(num)  {
 
     // Habilitar el botón "Predecir"
     btnPredecir.disabled = false;
+
+    // btnPredecir.addEventListener("keydown", function (event) {
+    //     if (event.key === "Enter") { // Verificar si la tecla presionada es "Enter"
+    //         event.preventDefault(); // Prevenir que se envíe el formulario
+    //         btnPredecir.click(); // Hacer click en el botón
+    //     }
+    // });
 }
 // run();
 
