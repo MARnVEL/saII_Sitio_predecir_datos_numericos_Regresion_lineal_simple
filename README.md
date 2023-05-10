@@ -10,20 +10,20 @@ Este repositorio tiene una página web clásica. Su ojetivo es dar respuesta a l
             <img width="100" style="margin: 10" title='JavaScript' src='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'>
         </a>
     </span>
-    <br/>
     <span>
         <a href="https://www.w3schools.com/html/default.asp" title='html' target="_blank">
-            <img width="100" src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1024px-HTML5_logo_and_wordmark.svg.png'>
+            <img width="100" style="margin: 10" title='HTML' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1024px-HTML5_logo_and_wordmark.svg.png'>
         </a>
     </span>
     <span>
         <a href="https://www.w3schools.com/css/default.asp" title='CSS' target="_blank">
-            <img width="200" src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/800px-CSS3_logo_and_wordmark.svg.png'>
+            <img width="72" style="margin: 10" title='CSS' src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/800px-CSS3_logo_and_wordmark.svg.png'>
         </a>
     </span>
+    <br/>
     <span>
         <a href="https://getbootstrap.com/docs/5.3/getting-started/download/" title='Bootstrap 5' target="_blank">
-            <img width="200" src='https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png'>
+            <img width="100" style="margin: 10" title='Bootstrap' src='https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png'>
         </a>
     </span>
 
