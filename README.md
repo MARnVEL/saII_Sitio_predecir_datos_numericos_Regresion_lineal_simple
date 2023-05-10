@@ -1,4 +1,4 @@
-# Ejemplos del Capítulo 3 - Libro: Learning TensorFlow.js Author: Gant Laborde
+# Ejemplos del Capítulo 3 - *Libro: Learning TensorFlow.js* -  Autor: Gant Laborde
 
 Este repositorio tiene una página web clásica. Su ojetivo es dar respuesta a las consignas planteadas en la asignatura *Seminario de Actualización 2* de la **Tecnicatura Superior en Desarrollo de Software** dictada en el **Instituto Politécnico de Formosa (IPF)**.
 
