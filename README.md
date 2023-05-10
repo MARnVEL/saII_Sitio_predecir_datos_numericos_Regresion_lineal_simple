@@ -30,10 +30,14 @@ Este repositorio tiene una página web clásica. Su ojetivo es dar respuesta a l
     
 </div>
 
-### Para ejecutar o utilizar el proyecto fácilmente debes clonar este repositorio en un directorio de tu sistema. Abre una terminal y ejecuta el siguiente comando:
+### Para ejecutar o utilizar el proyecto debes clonar este repositorio en un directorio de tu sistema. Abre una terminal y ejecuta el siguiente comando:
 
 ```bash
 git clone https://github.com/MARnVEL/saII_Sitio_predecir_datos_numericos_Regresion_lineal_simple.git
+```
+Luego, con tu nvaegador de preferencia, abre el archivo 
+```basch
+clase3_05_Modelo_secuencial.html
 ```
 
 
