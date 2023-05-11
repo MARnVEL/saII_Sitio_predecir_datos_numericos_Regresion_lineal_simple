@@ -11,6 +11,7 @@ const outDiv = document.getElementById('micro-out-div');
 // Variable para almacenar el número ingresado por el usuario
 let epochs;
 let prevNum;
+const valoresXY = [];
 
 
 inputNumEpocas.addEventListener("keydown", function (event) {
@@ -20,7 +21,14 @@ inputNumEpocas.addEventListener("keydown", function (event) {
     }
 })
 
-// Evento de input para validar el número ingresado y habilitar el botón "Entrenar"
+inputVariableX.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") { // Verificar si la tecla presionada es "Enter"
+        event.preventDefault(); // Prevenir que se envíe el formulario
+        btnPredecir.click(); // Hacer click en el botón
+    }
+})
+
+// Evento de input para validar el número ingresado y habilitar el botón "Entrenar":
 
 inputNumEpocas.addEventListener( 'input', (event) => {
 
@@ -49,9 +57,23 @@ inputNumEpocas.addEventListener( 'input', (event) => {
     }
 });
 
+btnEntrenar.addEventListener('click', function() {
+    // Deshabilitar el input
+    inputNumEpocas.disabled = true;
+    // Mostrar alert rojo
+    outDiv.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            Entrenando modelo. Espere por favor... 💬 🕐...
+        </div>`;
+    // Deshabilitar el botón "Entrenar"
+    btnEntrenar.disabled = true;
+    // Llamar a la función de entrenamiento
+    run(epochs);
+    
+});
 
 
-// Evento de input para validar el número ingresado en la variable X habilitar el botón "Predecir"
+// Evento del input para validar el número ingresado en la variable X habilitar el botón "Predecir"
 
 inputVariableX.addEventListener( 'input', (event) => {
     
@@ -81,29 +103,6 @@ inputVariableX.addEventListener( 'input', (event) => {
 });
 
 
-
-
-
-
-
-btnEntrenar.addEventListener('click', function() {
-    // Deshabilitar el input
-    inputNumEpocas.disabled = true;
-    // Mostrar alert rojo
-    outDiv.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-            Entrenando modelo. Espere por favor... 💬 🕐...
-        </div>`;
-    // Deshabilitar el botón "Entrenar"
-    btnEntrenar.disabled = true;
-    // Llamar a la función de entrenamiento
-    run(epochs);
-
-    
-});
-
-
-
 btnPredecir.addEventListener('click', function () {
 
     //Realizar la predicción:
@@ -116,10 +115,10 @@ btnPredecir.addEventListener('click', function () {
 
     //Habilitar el input épocas
     inputNumEpocas.disabled = false;
+    inputNumEpocas.focus();
     
     //Desabilitar el input de la variable x
     inputVariableX.disabled = true;
-    
 
     // Deshabilitar el botón "Predecir"
     btnPredecir.disabled = true;
@@ -127,7 +126,7 @@ btnPredecir.addEventListener('click', function () {
     // Mostrar alert azul con el resultado de la predicción
     outDiv.innerHTML = `
         <div class="alert alert-primary" role="alert">
-            <p> El resultado de la predicción para el valor de "y", cuando <strong>x = ${variableX}</strong> es: 
+            <p> El resultado de la predicción para el valor de <strong>"y"</strong>, utilizando un entrenamiento de <strong>${epochs} épocas</strong>, cuando <strong>x = ${variableX}</strong> es: 
                 <strong>${resultado}</strong>
             </p>
         </div>`;
@@ -136,12 +135,9 @@ btnPredecir.addEventListener('click', function () {
 
 
 
-
-
-
 async function run(epochs)  {
     /*
-    Creamos con tf un modelo que predice cuando el usuario ingrese un valor x, la computadora
+    Creamos con tf un modelo que predice el valor de y cuando el usuario ingrese un valor x. La computadora entrenará un modelo en función de datos pre-cargados. Este entrenamiento estará definido por el número de épocas previamente cargado por el usuario.
     */
     // Create a simple model.
     model.add(tf.layers.dense({units: 1, inputShape: [1]}));
@@ -153,51 +149,59 @@ async function run(epochs)  {
     const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4, 5, 6], [8, 1]);
     const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7, 9, 11], [8, 1]);
     
+    
     // Train the model using the data.
     await model.fit(xs, ys, {
         epochs: epochs,
+
         callbacks: {
             onEpochEnd: (epochs, logs) => {
                 console.log(logs);
                 console.log("/n");
                 console.log(`Epchs ${epochs+1} - Loss: ${logs.loss.toFixed(4)}`);
+                //Formo un array de objetos con la forma [{x: , y: },{x: , y: }]
+                valoresXY.push({x: epochs+1, y:logs.loss.toFixed(4)});
             }
         }
     });
 
-    
+    //Me fijo si se me cargaron los valores en el de x e y en el array
+    console.log("Este es mi array para el gráfico", valoresXY);
+
+
     // Mostrar alert verde
     outDiv.innerHTML = `
         <div class="alert alert-success" role="alert">
             Terminé de entrenar el modelo 🤖
         </div>`;
 
-    // document.getElementById('micro-out-div').innerText = "Terminé de entrenar";
-
     //Habilito el input para que ingrese el valor de X:
     inputVariableX.disabled = false;
-    console.log("Luego de habilitar el input de la x")
-    inputVariableX.autofocus;
-
-    // Habilitar el botón "Predecir"
-    btnPredecir.disabled = false;
+   // console.log("Luego de habilitar el input de la x")
+    inputVariableX.focus();
 
 
-    // btnPredecir.addEventListener("keydown", function (event) {
-    //     if (event.key === "Enter") { // Verificar si la tecla presionada es "Enter"
-    //         event.preventDefault(); // Prevenir que se envíe el formulario
-    //         btnPredecir.click(); // Hacer click en el botón
-    //     }
-    // });
+
 }
-// run();
+
 
 function Predecir (valor) {
     // Use the model to do inference on a data point the model hasn't seen.
-    // Should print approximately 39.
     
     // document.getElementById('micro-out-div').innerText = model.predict(tf.tensor2d([20], [1, 1])).dataSync();
     const resultado = model.predict(tf.tensor2d([valor], [1, 1])).dataSync();
+
+    //########################### Gráfico de error #############################################
+
+    const data = {values: valoresXY}
+    // Get a surface
+    const surface = tfvis.visor().surface({ name: 'Pérdida vs épocas: y(x)', tab: 'Charts' });
+
+    // Render a linechart on that surface
+    tfvis.render.linechart(surface, data, {zoomToFit: true});
+
+
+
     return resultado
 }
 
