@@ -26,6 +26,11 @@ Este repositorio tiene una página web clásica. Su ojetivo es dar respuesta a l
             <img width="100" style="margin: 10" title='Bootstrap' src='https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png'>
         </a>
     </span>
+    <span>
+        <a href="https://www.tensorflow.org/js?hl=es-419" title='TensorFlow.js' target="_blank">
+            <img width="100" style="margin: 10" title='Bootstrap' src='https://www.tensorflow.org/static/site-assets/images/project-logos/tensorflow-js-logo-social.png'>
+        </a>
+    </span>
 
     
 </div>
