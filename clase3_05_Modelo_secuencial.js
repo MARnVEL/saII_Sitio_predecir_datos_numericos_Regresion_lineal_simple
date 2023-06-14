@@ -146,8 +146,12 @@ async function run(epochs)  {
     model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
     
     // Generate some synthetic data for training. (y = 2x - 1)
-    const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4, 5, 6], [8, 1]);
-    const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7, 9, 11], [8, 1]);
+    const xs = tf.tensor2d(
+        [ -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [21, 1]
+    );
+    const ys = tf.tensor2d(
+        [ -21, -19, -17, -15, -13, -11, -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 ],  [21, 1]
+    );
     
     
     // Train the model using the data.
@@ -180,8 +184,8 @@ async function run(epochs)  {
    // console.log("Luego de habilitar el input de la x")
     inputVariableX.focus();
 
-
-
+    // xs.dispose();
+    // ys.dispose();
 }
 
 

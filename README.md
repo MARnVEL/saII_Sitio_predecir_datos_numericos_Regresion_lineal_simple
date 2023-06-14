@@ -39,7 +39,7 @@ Este repositorio tiene una página web clásica. Su ojetivo es dar respuesta a l
 ```bash
 git clone https://github.com/MARnVEL/saII_Sitio_predecir_datos_numericos_Regresion_lineal_simple.git
 ```
-Luego, con tu nvaegador de preferencia, abre el archivo 
+Luego, con tu navegador de preferencia, abre el archivo 
 ```basch
 clase3_05_Modelo_secuencial.html
 ```
